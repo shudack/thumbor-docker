@@ -64,6 +64,6 @@ ENV PATH="/home/thumbor/venv/bin:$PATH"
 
 COPY conf/thumbor.conf.tpl /app/thumbor.conf.tpl
 
-COPY docker-entrypoint.sh /
+COPY --chmod=755 docker-entrypoint.sh /
 CMD ["thumbor"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
