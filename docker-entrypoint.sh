@@ -9,19 +9,13 @@ if [ -n "$LOG_LEVEL" ]; then
     LOG_PARAMETER="-l $LOG_LEVEL"
 fi
 
-# Check if thumbor port is defined -> (default port 80)
-if [ -z ${THUMBOR_PORT+x} ]; then
-    THUMBOR_PORT=80
-fi
-
-# Check if thumbor number processes is defined -> (default 1)
-if [ -z ${THUMBOR_NUM_PROCESSES+x} ]; then
-    THUMBOR_NUM_PROCESSES=1
-fi
+# Default port 80 and 1 process when not defined (an empty value is kept as-is)
+THUMBOR_PORT="${THUMBOR_PORT-80}"
+THUMBOR_NUM_PROCESSES="${THUMBOR_NUM_PROCESSES-1}"
 
 if [ "$1" = 'thumbor' ]; then
     echo "---> Starting thumbor with ${THUMBOR_NUM_PROCESSES:-1} processes..."
-    exec thumbor --port=$THUMBOR_PORT --conf=/app/thumbor.conf $LOG_PARAMETERS --processes=${THUMBOR_NUM_PROCESSES:-1} --log-level=warning --app tc_core.app.App
+    exec thumbor --port="$THUMBOR_PORT" --conf=/app/thumbor.conf $LOG_PARAMETERS --processes="${THUMBOR_NUM_PROCESSES:-1}" --log-level=warning --app tc_core.app.App
 fi
 
 exec "$@"
