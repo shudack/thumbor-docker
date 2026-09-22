@@ -154,6 +154,12 @@ Passing any other command to the container runs it instead of Thumbor.
 The defaults are meant for trying things out. Before exposing Thumbor publicly, set your own `SECURITY_KEY`, set `ALLOW_UNSAFE_URL=False`, and restrict `ALLOWED_SOURCES`.
 
 # Release notes
+### 2026-09-22
+**UPDATE**
+- Update the Thumbor version to 7.8.0
+- Update the Python version to 3.12 Trixie
+- Update to Debian 13 (Trixie) with LTS until 2030
+
 
 ### 2024-01-29
 **UPDATE**
